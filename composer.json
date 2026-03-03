@@ -1,0 +1,43 @@
+{
+    "name": "zaimea/groups-sdk-laravel",
+    "license": "MIT",
+    "homepage": "https://zaimea.com",
+    "description": "A Laravel service provider for including the Zaimea Groups SDK for PHP",
+    "keywords": [
+        "zaimea.com",
+        "groups",
+        "sdk"
+    ],
+    "authors": [
+        {
+            "name": "Custură Laurențiu",
+            "email": "mail@custura.de"
+        }
+    ],
+    "require": {
+        "php": ">=8.3",
+        "illuminate/support": "^12.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Zaimea\\SDK\\Groups\\": "/src"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Zaimea\\SDK\\Groups\\GroupsServiceProvider"
+            ],
+            "aliases": {
+                "GROUPS": "Zaimea\\SDK\\Groups\\GroupsFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev"
+}
