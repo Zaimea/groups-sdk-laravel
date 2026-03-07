@@ -6,6 +6,7 @@ namespace Zaimea\SDK\Groups;
 
 use Zaimea\SDK\Groups;
 use Illuminate\Support\ServiceProvider;
+use Zaimea\SDK\Groups\Support\ProductionSecurityChecks;
 
 /**
  * Zaimea Groups SDK for PHP service provider for Laravel applications
@@ -28,10 +29,14 @@ class GroupsServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-          $this->publishes(
-              [__DIR__.'/../config/groups.php' => config_path('groups.php')],
-              'groups'
-          );
+        ProductionSecurityChecks::assertForEnvironment((string) app()->environment());
+
+        if ($this->app->runningInConsole()) {
+            $this->publishes(
+                [__DIR__.'/../config/groups.php' => config_path('groups.php')],
+                'groups-config'
+            );
+        };
     }
 
     /**
@@ -46,13 +51,15 @@ class GroupsServiceProvider extends ServiceProvider
             'groups'
         );
 
-        $this->app->singleton('groups', function ($app) {
-            $config = $app->make('config')->get('groups');
-
-            return new Groups($config);
+        $this->app->singleton(GroupsClient::class, function ($app) {
+            return new GroupsClient();
         });
 
-        $this->app->alias('groups', 'Zaimea\SDK\Groups');
+        $this->app->singleton('groups', function ($app) {
+            return $app->make(GroupsClient::class);
+        });
+
+        $this->app->alias('groups', GroupsClient::class);
     }
 
     /**

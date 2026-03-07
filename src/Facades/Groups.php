@@ -4,25 +4,24 @@ declare(strict_types=1);
 
 namespace Zaimea\SDK\Groups\Facades;
 
-use Zaimea\SDK\GroupsClientInterface;
 use Illuminate\Support\Facades\Facade;
+use Zaimea\SDK\Groups\GroupsClient;
 
 /**
- * Facade for the Zaimea Groups service
- *
- * @method static GroupsClientInterface createClient($name, array $args = []) Get a client from the service builder.
+ * @method static array getGroups()
+ * @method static array getGroupRecords(array $filters = [])
+ * @method static array createGroup(string $name, array $options = [])
+ * @method static array getGroup(int $groupId)
+ * @method static array updateGroup(int $groupId, array $data)
+ * @method static array deleteGroup(int $groupId)
+ * @method static array getGroupMembers(int $groupId)
+ * @method static array getGroupProjects(int $groupId)
+ * @method static \Zaimea\SDK\Groups\GroupsClient setToken(string $token)
  */
-class GroupsFacade extends Facade
+class Groups extends Facade
 {
-
-    /**
-     * Get the registered name of the component.
-     *
-     * @return string
-     */
-    protected static function getFacadeAccessor()
+    protected static function getFacadeAccessor(): string
     {
         return 'groups';
     }
-
 }
