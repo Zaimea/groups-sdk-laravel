@@ -4,21 +4,35 @@ declare(strict_types=1);
 
 namespace Zaimea\SDK\Groups\Exceptions;
 
-class ValidationException extends ApiException
-{
-    protected array $errors;
+use Exception;
 
-    public function __construct(
-        string $message = '',
-        array $errors = [],
-        int $code = 422,
-        ?\Exception $previous = null
-    ) {
-        parent::__construct($message, $code, $previous);
+class ValidationException extends Exception
+{
+    /**
+     * The array of errors.
+     *
+     * @var array
+     */
+    public $errors;
+
+    /**
+     * Create a new exception instance.
+     *
+     * @return void
+     */
+    public function __construct(array $errors)
+    {
+        parent::__construct('The given data failed to pass validation.');
+
         $this->errors = $errors;
     }
 
-    public function getErrors(): array
+    /**
+     * The array of errors.
+     *
+     * @return array
+     */
+    public function errors()
     {
         return $this->errors;
     }

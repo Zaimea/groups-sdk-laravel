@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Zaimea\SDK\Groups\Exceptions;
 
-class AuthenticationException extends ApiException
+use Exception;
+
+class FailedActionException extends Exception
 {
     //
 }

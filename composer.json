@@ -2,7 +2,7 @@
     "name": "zaimea/groups-sdk-laravel",
     "license": "MIT",
     "homepage": "https://zaimea.com",
-    "description": "A Laravel service provider for including the Zaimea Groups SDK for PHP",
+    "description": "A Laravel Package for including the Zaimea Groups SDK",
     "keywords": [
         "zaimea.com",
         "groups",
@@ -44,11 +44,12 @@
         "laravel": {
             "providers": [
                 "Zaimea\\SDK\\Groups\\GroupsServiceProvider"
-            ],
-            "aliases": {
-                "Groups": "Zaimea\\SDK\\Groups\\Groups"
-            }
+            ]
         }
     },
-    "minimum-stability": "dev"
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

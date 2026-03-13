@@ -22,14 +22,10 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | API Configuration
+    | API URL
     |--------------------------------------------------------------------------
     */
-    'api' => [
-        'base_url' => env('ZAIMEA_API_URL', 'https://resources.click/api/v1'),
-        'timeout' => env('ZAIMEA_API_TIMEOUT', 30),
-        'retries' => env('ZAIMEA_API_RETRIES', 3),
-    ],
+    'api_url' => env('ZAIMEA_API_URL', 'https://resources.click/api/v1/groups/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -45,9 +41,7 @@ return [
         
         // Cache configuration (for 'cache' source)
         'cache' => [
-            'store' => env('ZAIMEA_CACHE_STORE', 'default'),
             'key_prefix' => 'zaimea_token_',
-            'ttl' => 3600, // seconds
         ],
     ],
 
@@ -58,7 +52,6 @@ return [
     */
     'security' => [
         'force_https' => env('ZAIMEA_FORCE_HTTPS', true),
-        'verify_ssl' => env('ZAIMEA_VERIFY_SSL', true),
     ],
 
     /*
