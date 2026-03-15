@@ -14,6 +14,10 @@ use Zaimea\SDK\Groups\SDKManager;
  * @method static \Zaimea\SDK\Groups\Resources\Group group(int $groupId)
  * @method static \Zaimea\SDK\Groups\Resources\Group members(int $groupId)
  * @method static \Zaimea\SDK\Groups\Resources\Group createGroup(array $data, bool $wait = true)
+ * @method static \Zaimea\SDK\Groups\Resources\Group updateGroup(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Group updateGroupDetails(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Group updateGroupSettings(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Group transferGroup(int $groupId, array $data)
  * 
  * @method static \Zaimea\SDK\Groups\Resources\Record record(int $groupId, int $recordId)
  * @method static \Zaimea\SDK\Groups\Resources\Record records(int $groupId)

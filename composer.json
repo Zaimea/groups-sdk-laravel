@@ -2,7 +2,7 @@
     "name": "zaimea/groups-sdk-laravel",
     "license": "MIT",
     "homepage": "https://zaimea.com",
-    "description": "A Laravel Package for including the Zaimea Groups SDK",
+    "description": "SDK Package for including the Zaimea Groups API",
     "keywords": [
         "zaimea.com",
         "groups",

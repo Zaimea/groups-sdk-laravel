@@ -48,6 +48,26 @@ class Group extends Resource
     }
 
     /**
+     * Mount data for given group.
+     *
+     * @return void
+     */
+    public function mountGroup()
+    {
+        $this->sdk->mountGroup($this->groupId);
+    }
+
+    /**
+     * Set user current group.
+     *
+     * @return void
+     */
+    public function setCurrentGroup()
+    {
+        $this->sdk->setCurrentGroup($this->groupId);
+    }
+
+    /**
      * Delete the given group.
      *
      * @return void
