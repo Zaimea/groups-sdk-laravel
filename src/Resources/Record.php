@@ -25,25 +25,25 @@ class Record extends Resource
     }
 
     /**
-     * Read the group all records.
+     * Read the group records.
      *
      * @return void
      */
-    public function records()
+    public function recordsAll()
     {
-        $this->sdk->records($this->groupId);
+        $this->sdk->recordsAll($this->groupId);
     }
 
     /**
-     * Read the group all records paginated.
+     * Read the group records paginated.
      *
      * @param array $filters
      * @param int $page
      * @return void
      */
-    public function recordsPaginated(array $filters = [], int $page = 1)
+    public function records(array $filters = [], int $page = 1)
     {
-        $this->sdk->recordsPaginated($this->groupId, $filters, $page);
+        $this->sdk->records($this->groupId, $filters, $page);
     }
 
     /**

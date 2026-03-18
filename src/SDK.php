@@ -6,12 +6,15 @@ namespace Zaimea\SDK\Groups;
 
 use GuzzleHttp\Client as HttpClient;
 use Zaimea\SDK\Groups\Resources\User;
+use Illuminate\Pagination\AbstractPaginator;
 
 class SDK
 {
     use Actions\ManagesGroups,
         Actions\ManagesGroupRecords,
         Actions\ManagesGroupMembers,
+        Actions\ManagesGroupClients,
+        Actions\ManagesClients,
         MakesHttpRequests;
 
     /**
@@ -33,7 +36,7 @@ class SDK
      *
      * @var int
      */
-    public $timeout = 30;
+    public int $timeout = 30;
 
     /**
      * Create a new Groups instance.
@@ -57,48 +60,29 @@ class SDK
      * @param  array  $collection
      * @param  string  $class
      * @param  array  $extraData
-     * @return array
+     * @return array|AbstractPaginator
      */
-    protected function transformCollection($collection, $class, $extraData = [])
+    protected function transformCollection(array $collection, string $class, array $extraData = []): array|AbstractPaginator
     {
+        if (is_array($collection) && isset($collection['data']) && isset($collection['meta'])) {
+            $collection['data'] = array_map(function ($data) use ($class, $extraData) {
+                return new $class($data + $extraData, $this);
+            }, $collection['data']);
+            
+            return $collection;
+        }
+        
+        if ($collection instanceof AbstractPaginator) {
+            $collection->getCollection()->transform(function ($data) use ($class, $extraData) {
+                return new $class($data + $extraData, $this);
+            });
+            
+            return $collection;
+        }
+        
         return array_map(function ($data) use ($class, $extraData) {
             return new $class($data + $extraData, $this);
         }, $collection);
-    }
-
-    /**
-     * Transform a paginated collection to the given class.
-     *
-     * @param  array  $response
-     * @param  string  $class
-     * @param  array  $extraData 
-     * @return array
-     */
-    protected function transformCollectionPaginate($response, $class, $extraData = [])
-    {
-        $transformedData = [];
-        if (isset($response['data']) && is_array($response['data'])) {
-            foreach ($response['data'] as $item) {
-                $transformedData[] = new $class($item + $extraData, $this);
-            }
-        }
-
-        return [
-            'data' => $transformedData,
-            'links' => $response['links'] ?? [
-                'first' => null,
-                'last' => null,
-                'prev' => null,
-                'next' => null,
-            ],
-            'meta' => $response['meta'] ?? [
-                'path' => null,
-                'per_page' => count($transformedData),
-                'next_cursor' => null,
-                'prev_cursor' => null,
-            ],
-            'included' => $response['included'] ?? [],
-        ];
     }
 
     /**
@@ -107,7 +91,7 @@ class SDK
      * @param  \GuzzleHttp\Client|null  $guzzle
      * @return $this
      */
-    public function setApiKey(string $apiKey, $guzzle = null)
+    public function setApiKey(string $apiKey, ?HttpClient $guzzle = null): self
     {
         $this->apiKey = $apiKey;
 
@@ -132,7 +116,7 @@ class SDK
      * @param  int  $timeout
      * @return $this
      */
-    public function setTimeout($timeout)
+    public function setTimeout(int $timeout): self
     {
         $this->timeout = $timeout;
 
@@ -144,7 +128,7 @@ class SDK
      *
      * @return int
      */
-    public function getTimeout()
+    public function getTimeout(): int
     {
         return $this->timeout;
     }
@@ -154,7 +138,7 @@ class SDK
      *
      * @return \Zaimea\SDK\Groups\Resources\User
      */
-    public function user()
+    public function user(): User
     {
         return new User($this->get('user')['user']);
     }

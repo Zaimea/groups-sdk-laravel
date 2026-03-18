@@ -27,7 +27,7 @@ trait ManagesGroupMembers
      * @param  int  $groupId
      * @return \Zaimea\SDK\Groups\Resources\Member[]
      */
-    public function members(int $groupId)
+    public function membersAll(int $groupId)
     {
         return $this->transformCollection(
             $this->get("members/all", ['group' => $groupId])['members'],
@@ -43,14 +43,14 @@ trait ManagesGroupMembers
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Member[]
      */
-    public function membersPaginated($groupId, array $filters = [], int $page = 1)
+    public function members($groupId, array $filters = [], int $page = 1)
     {
         $params = array_merge(
             ['group' => $groupId, 'page' => $page],
             $filters
         );
 
-        return $this->transformCollectionPaginate(
+        return $this->transformCollection(
             $this->get("members/all", $params)['members'],
             Member::class,
             ['groupId' => $groupId]
@@ -60,11 +60,17 @@ trait ManagesGroupMembers
     /**
      * Create a new group member.
      *
-     * @param  array $data
+     * @param  int  $groupId
+     * @param  array  $data
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupMember(array $data)
+    public function createGroupMember(int $groupId, array $data)
     {
-        return new Response($this->post("members/create", $data), $this);
+        $params = array_merge(
+            ['group' => $groupId],
+            $data
+        );
+        
+        return new Response($this->post("members/create", $params), $this);
     }
 }

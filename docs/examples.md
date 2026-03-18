@@ -59,13 +59,13 @@ class GroupManager extends Component
 
     public function loadMembers(): void
     {
-        $response = $this->groups->membersPaginated($this->groupId, [], 1);
+        $response = $this->groups->membersAll($this->groupId, [], 1);
         $this->members = $response['data'];
     }
 
     public function loadNextPage(): void
     {
-        $response = $this->groups->membersPaginated($this->groupId, [], 2);
+        $response = $this->groups->membersAll($this->groupId, [], 2);
         $this->members = array_merge($this->members, $response['data']);
     }
 

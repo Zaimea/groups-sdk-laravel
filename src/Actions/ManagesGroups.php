@@ -62,19 +62,19 @@ trait ManagesGroups
     /**
      * Create a new group.
      *
-     * @param  array $data
+     * @param  array $data ['name' => '']
      * @param  bool  $wait
      * @return \Zaimea\SDK\Groups\Resources\Group
      */
     public function createGroup(array $data, $wait = true)
     {
-        $group = $this->post("group/create", $data)['data'];
+        $group = $this->post("group/create", $data)['group'];
 
         if ($wait) {
             return $this->retry($this->getTimeout(), function () use ($group) {
                 $group = $this->group($group['id']);
 
-                return $group->status == 'created' ? $group : null;
+                return $group->status == 1 ? $group : null;
             });
         }
 

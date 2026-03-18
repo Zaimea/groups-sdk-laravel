@@ -20,7 +20,7 @@ class SDKManager
      *
      * @var \Zaimea\SDK\Groups\SDK
      */
-    protected $sdk;
+    protected SDK $sdk;
 
     /**
      * Create a new SDK manager instance.
@@ -37,7 +37,7 @@ class SDKManager
      *
      * @return mixed
      */
-    public function __call(string $method, array $parameters)
+    public function __call(string $method, array $parameters): mixed
     {
         return $this->forwardCallTo($this->sdk, $method, $parameters);
     }

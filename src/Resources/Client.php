@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zaimea\SDK\Groups\Resources;
 
-class Member extends Resource
+class Client extends Resource
 {
     /**
      * The id of the group.
@@ -19,7 +19,7 @@ class Member extends Resource
      * @param  int $memberId
      * @return void
      */
-    public function member(int $memberId)
+    public function client(int $memberId)
     {
         $this->sdk->member($this->groupId, $memberId);
     }
@@ -29,7 +29,7 @@ class Member extends Resource
      *
      * @return void
      */
-    public function membersAll()
+    public function clientsAll()
     {
         $this->sdk->membersAll($this->groupId);
     }
@@ -41,7 +41,7 @@ class Member extends Resource
      * @param  int $page
      * @return void
      */
-    public function members(array $filters = [], int $page = 1)
+    public function clients(array $filters = [], int $page = 1)
     {
         $this->sdk->members($this->groupId, $filters, $page);
     }

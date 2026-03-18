@@ -22,12 +22,12 @@ trait ManagesGroupRecords
     }
 
     /**
-     * Get paginated records for a group.
+     * Get all records for a group.
      *
      * @param  int  $groupId
      * @return \Zaimea\SDK\Groups\Resources\Record[]
      */
-    public function records(int $groupId)
+    public function recordsAll(int $groupId)
     {
         return $this->transformCollection(
             $this->get("records", ['group' => $groupId])['records']['data'],
@@ -38,20 +38,19 @@ trait ManagesGroupRecords
 
     /**
      * Get paginated group records.
-     *
      * @param  int  $groupId
      * @param  array  $filters
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Member[]
      */
-    public function recordsPaginated($groupId, array $filters = [], int $page = 1)
+    public function records($groupId, array $filters = [], int $page = 1)
     {
         $params = array_merge(
             ['group' => $groupId, 'page' => $page],
             $filters
         );
 
-        return $this->transformCollectionPaginate(
+        return $this->transformCollection(
             $this->get("records/all", $params)['records'],
             Record::class,
             ['groupId' => $groupId]

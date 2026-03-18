@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Zaimea\SDK\Groups\Resources;
 
+use Illuminate\Pagination\AbstractPaginator;
 use Zaimea\SDK\Groups\SDK;
 
 #[\AllowDynamicProperties]
@@ -41,7 +42,7 @@ class Resource
      *
      * @return void
      */
-    protected function fill()
+    protected function fill(): void
     {
         foreach ($this->attributes as $key => $value) {
             $key = $this->camelCase($key);
@@ -56,7 +57,7 @@ class Resource
      * @param  string  $key
      * @return string
      */
-    protected function camelCase($key)
+    protected function camelCase($key): string
     {
         $parts = explode('_', $key);
 
@@ -72,58 +73,42 @@ class Resource
     /**
      * Transform the items of the collection to the given class.
      *
+     * @param  array  $collection
      * @param  string  $class
-     * @return array
+     * @param  array  $extraData
+     * @return array|AbstractPaginator
      */
-    protected function transformCollection(array $collection, $class, array $extraData = [])
+    protected function transformCollection(array $collection, string $class, array $extraData = []): array|AbstractPaginator
     {
-        return array_map(function ($data) use ($class, $extraData) {
-            return new $class($data + $extraData, $this->sdk);
-        }, $collection);
-    }
-
-    /**
-     * Transform a paginated collection to the given class.
-     *
-     * @param  array  $response
-     * @param  string  $class
-     * @param  array  $extraData 
-     * @return array
-     */
-    protected function transformCollectionPaginate($response, $class, $extraData = [])
-    {
-        $transformedData = [];
-        if (isset($response['data']) && is_array($response['data'])) {
-            foreach ($response['data'] as $item) {
-                $transformedData[] = new $class($item + $extraData, $this);
-            }
+        if (is_array($collection) && isset($collection['data']) && isset($collection['meta'])) {
+            $collection['data'] = array_map(function ($data) use ($class, $extraData) {
+                return new $class($data + $extraData, $this);
+            }, $collection['data']);
+            
+            return $collection;
         }
-
-        return [
-            'data' => $transformedData,
-            'links' => $response['links'] ?? [
-                'first' => null,
-                'last' => null,
-                'prev' => null,
-                'next' => null,
-            ],
-            'meta' => $response['meta'] ?? [
-                'path' => null,
-                'per_page' => count($transformedData),
-                'next_cursor' => null,
-                'prev_cursor' => null,
-            ],
-            'included' => $response['included'] ?? [],
-        ];
+        
+        if ($collection instanceof AbstractPaginator) {
+            $collection->getCollection()->transform(function ($data) use ($class, $extraData) {
+                return new $class($data + $extraData, $this);
+            });
+            
+            return $collection;
+        }
+        
+        return array_map(function ($data) use ($class, $extraData) {
+            return new $class($data + $extraData, $this);
+        }, $collection);
     }
 
     /**
      * Transform the collection of tags to a string.
      *
+     * @param  array  $tags
      * @param  string|null  $separator
      * @return string
      */
-    protected function transformTags(array $tags, $separator = null)
+    protected function transformTags(array $tags, $separator = null): string
     {
         $separator = $separator ?: ', ';
 
