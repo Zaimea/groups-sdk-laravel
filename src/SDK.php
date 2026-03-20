@@ -15,6 +15,11 @@ class SDK
         Actions\ManagesGroupMembers,
         Actions\ManagesGroupClients,
         Actions\ManagesClients,
+        Actions\ManagesGroupColors,
+        Actions\ManagesGroupCounts,
+        Actions\ManagesInvitations,
+        Actions\ManagesGroupHolidays,
+        Actions\ManagesGroupLockings,
         MakesHttpRequests;
 
     /**

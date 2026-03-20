@@ -3,6 +3,7 @@
 namespace Zaimea\SDK\Groups\Actions;
 
 use Zaimea\SDK\Groups\Resources\Group;
+use Zaimea\SDK\Groups\Resources\GroupMount;
 use Zaimea\SDK\Groups\Resources\Response;
 
 trait ManagesGroups
@@ -16,7 +17,8 @@ trait ManagesGroups
     public function group($groupId)
     {
         return new Group(
-            $this->get("group/read", ['group' => $groupId])['data'], $this
+            $this->get("group/read", ['group' => $groupId])['data']
+            + ['groupId' => $groupId], $this
         );
     }
 
@@ -37,12 +39,13 @@ trait ManagesGroups
      * Get a group data.
      *
      * @param  int  $groupId
-     * @return \Zaimea\SDK\Groups\Resources\Group
+     * @return \Zaimea\SDK\Groups\Resources\GroupMount
      */
     public function mountGroup($groupId)
     {
-        return new Group(
-            $this->get("group/mount", ['group' => $groupId])['data'], $this
+        return new GroupMount(
+            $this->get("group/mount", ['group' => $groupId])['data']
+            + ['groupId' => $groupId], $this
         );
     }
 
