@@ -26,7 +26,6 @@ use Zaimea\SDK\Groups\SDKManager;
  * Record Start
  * @method static \Zaimea\SDK\Groups\Resources\Record record(int $groupId, int $recordId)
  * @method static \Zaimea\SDK\Groups\Resources\Record records(int $groupId, array $filters = [], int $page)
- * @method static \Zaimea\SDK\Groups\Resources\Record recordsAll(int $groupId)
  * @method static \Zaimea\SDK\Groups\Resources\Record recordsAggregate(int $groupId, array $filters = [])
  * @method static \Zaimea\SDK\Groups\Resources\Resource updateGroupRecord(int $groupId, int $recordId, string $actionType)
  * @method static \Zaimea\SDK\Groups\Resources\Resource approveGroupRecord(int $groupId, int $recordId)
@@ -37,7 +36,6 @@ use Zaimea\SDK\Groups\SDKManager;
  * Member Start
  * @method static \Zaimea\SDK\Groups\Resources\Member member($int $groupId, int $memberId)
  * @method static \Zaimea\SDK\Groups\Resources\Member members(int $groupId, array $filters = [], int $page)
- * @method static \Zaimea\SDK\Groups\Resources\Member membersAll(int $groupId)
  * @method static \Zaimea\SDK\Groups\Resources\Member createGroupMember(int $groupId, array $data)
  * Member End
  * 

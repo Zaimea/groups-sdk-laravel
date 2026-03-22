@@ -59,13 +59,13 @@ class GroupManager extends Component
 
     public function loadMembers(): void
     {
-        $response = $this->groups->membersAll($this->groupId, [], 1);
+        $response = $this->groups->members($this->groupId, [], 1);
         $this->members = $response['data'];
     }
 
     public function loadNextPage(): void
     {
-        $response = $this->groups->membersAll($this->groupId, [], 2);
+        $response = $this->groups->members($this->groupId, [], 2);
         $this->members = array_merge($this->members, $response['data']);
     }
 
@@ -141,9 +141,9 @@ class GroupsService
     /**
      * Get all members with automatic pagination handling
      */
-    public function getAllMembers(int $groupId): array
+    public function getMembers(int $groupId): array
     {
-        return $this->sdk->membersAll($groupId, [], 50); // Max 50 pages safety
+        return $this->sdk->members($groupId, [], 50); // Max 50 pages safety
     }
 
     /**

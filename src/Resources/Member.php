@@ -25,16 +25,6 @@ class Member extends Resource
     }
 
     /**
-     * Read the group members.
-     *
-     * @return void
-     */
-    public function membersAll()
-    {
-        $this->sdk->membersAll($this->groupId);
-    }
-
-    /**
      * Read paginated group members.
      *
      * @param  array $filters

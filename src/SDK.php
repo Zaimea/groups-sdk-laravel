@@ -20,6 +20,14 @@ class SDK
         Actions\ManagesInvitations,
         Actions\ManagesGroupHolidays,
         Actions\ManagesGroupLockings,
+        Actions\ManagesGroupMedicals,
+        Actions\ManagesGroupMonthlyQuotas,
+        Actions\ManagesGroupProjects,
+        Actions\ManagesGroupReports,
+        Actions\ManagesGroupRoles,
+        Actions\ManagesGroupTasks,
+        Actions\ManagesGroupTemplates,
+        Actions\ManagesGroupVacations,
         MakesHttpRequests;
 
     /**

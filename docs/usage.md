@@ -96,7 +96,7 @@ foreach ($members as $member) {
 List members with pagination (JSON:API format)
 
 ```php
-$response = $sdk->membersAll(1, [
+$response = $sdk->members(1, [
     'status' => 'active',
     'role' => 'member',
 ], 1);

@@ -22,21 +22,6 @@ trait ManagesGroupRecords
     }
 
     /**
-     * Get all records for a group.
-     *
-     * @param  int  $groupId
-     * @return \Zaimea\SDK\Groups\Resources\Record[]
-     */
-    public function recordsAll(int $groupId)
-    {
-        return $this->transformCollection(
-            $this->get("records", ['group' => $groupId])['records']['data'],
-            Record::class,
-            ['groupId' => $groupId]
-        );
-    }
-
-    /**
      * Get paginated group records.
      * @param  int  $groupId
      * @param  array  $filters

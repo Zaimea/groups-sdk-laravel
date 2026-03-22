@@ -21,17 +21,7 @@ class Client extends Resource
      */
     public function client(int $memberId)
     {
-        $this->sdk->member($this->groupId, $memberId);
-    }
-
-    /**
-     * Read the group members.
-     *
-     * @return void
-     */
-    public function clientsAll()
-    {
-        $this->sdk->membersAll($this->groupId);
+        $this->sdk->client($this->groupId, $memberId);
     }
 
     /**
@@ -43,6 +33,6 @@ class Client extends Resource
      */
     public function clients(array $filters = [], int $page = 1)
     {
-        $this->sdk->members($this->groupId, $filters, $page);
+        $this->sdk->clients($this->groupId, $filters, $page);
     }
 }

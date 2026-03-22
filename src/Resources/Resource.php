@@ -59,6 +59,8 @@ class Resource
      */
     protected function camelCase($key): string
     {
+        $key = (string) $key;
+        
         $parts = explode('_', $key);
 
         foreach ($parts as $i => $part) {

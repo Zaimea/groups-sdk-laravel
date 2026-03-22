@@ -25,16 +25,6 @@ class Record extends Resource
     }
 
     /**
-     * Read the group records.
-     *
-     * @return void
-     */
-    public function recordsAll()
-    {
-        $this->sdk->recordsAll($this->groupId);
-    }
-
-    /**
      * Read the group records paginated.
      *
      * @param array $filters
