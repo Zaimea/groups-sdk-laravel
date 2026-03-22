@@ -81,7 +81,7 @@ trait ManagesGroupVacations
      *
      * @param  int  $groupId
      * @param  int  $vacationId
-     * @return mixed
+     * @return \Zaimea\SDK\Groups\Resources\Response
      */
     public function approveVacation(int $groupId, int $vacationId)
     {
@@ -93,7 +93,7 @@ trait ManagesGroupVacations
      *
      * @param  int  $groupId
      * @param  int  $vacationId
-     * @return mixed
+     * @return \Zaimea\SDK\Groups\Resources\Response
      */
     public function disapproveVacation(int $groupId, int $vacationId)
     {

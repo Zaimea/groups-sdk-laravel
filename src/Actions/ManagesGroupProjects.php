@@ -109,7 +109,7 @@ trait ManagesGroupProjects
      * 
      * @param  int  $groupId
      * @param  int  $projectId
-     * @return \Zaimea\SDK\Groups\Resources\Project[]
+     * @return \Zaimea\SDK\Groups\Resources\Task[]
      */
     public function projectTasks($groupId, int $projectId)
     {
@@ -131,7 +131,7 @@ trait ManagesGroupProjects
      * 
      * @param  int  $groupId
      * @param  int  $projectId
-     * @return \Zaimea\SDK\Groups\Resources\Project[]
+     * @return \Zaimea\SDK\Groups\Resources\User[]
      */
     public function projectUsers($groupId, int $projectId)
     {
@@ -153,7 +153,7 @@ trait ManagesGroupProjects
      * 
      * @param  int  $groupId
      * @param  int  $projectId
-     * @return \Zaimea\SDK\Groups\Resources\Project[]
+     * @return \Zaimea\SDK\Groups\Resources\Template[]
      */
     public function projectTemplates($groupId, int $projectId)
     {

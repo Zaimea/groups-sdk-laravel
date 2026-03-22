@@ -24,9 +24,10 @@ trait ManagesGroupColors
     /**
      * Get the collection of group colors.
      *
+     * @param  int  $groupId
      * @return \Zaimea\SDK\Groups\Resources\Color[]
      */
-    public function colors($groupId)
+    public function colors(int $groupId)
     {
         return $this->transformCollection(
             $this->get("colors/all", ['group' => $groupId])['data'],

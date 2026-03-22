@@ -27,7 +27,7 @@ trait ManagesGroupRecords
      * @param  int  $groupId
      * @param  array  $filters ['search' => 'user id / scheduled or title', 'users' => ['1'], 'start' => 'YYYY-MM-DD', 'end' => 'YYYY-MM-DD']
      * @param  int  $page
-     * @return \Zaimea\SDK\Groups\Resources\Member[]
+     * @return \Zaimea\SDK\Groups\Resources\Record[]
      */
     public function records($groupId, array $filters = [], int $page = 1)
     {

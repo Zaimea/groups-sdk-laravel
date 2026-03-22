@@ -22,11 +22,6 @@ trait MakesHttpRequests
      * @param  array   $payload
      * @return mixed
      */
-    /*public function get($uri)
-    {
-        return $this->request('GET', $uri);
-    }
-    */
     public function get($uri, array $payload = [])
     {
         return $this->request('GET', $uri, $payload);
