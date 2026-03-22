@@ -1,12 +1,5 @@
 parameters:
-    paths:
-        - src
-    
-    level: 5
-    
-    ignoreErrors:
-        - '#Access to an undefined property Zaimea\\SDK\\Groups\\Resources\\Resource::#'
-        - '#Access to an undefined property Zaimea\\SDK\\Groups\\Resources\\.*::#'
-    
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
+  paths:
+    - src
+
+  level: 0

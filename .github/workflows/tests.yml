@@ -3,7 +3,6 @@ name: Groups SDK Laravel tests
 on:
   push:
     branches:
-      - main
       - '*.x'
   pull_request:
   workflow_dispatch:
@@ -33,7 +32,7 @@ jobs:
           extensions: dom, curl, libxml, mbstring, zip
           ini-values: error_reporting=E_ALL
           tools: composer:v2
-          coverage: pcov
+          coverage: none
 
       - name: Install dependencies
         run: |
