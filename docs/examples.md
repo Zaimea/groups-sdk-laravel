@@ -164,7 +164,7 @@ public function inviteMembers($groupId, array $emails)
 
     foreach ($emails as $email) {
         try {
-            $response = Groups::createGroupMember($groupId, [
+            $response = Groups::createMember($groupId, [
                 'email' => $email,
                 'role' => 'member',
                 'rate' => '08:00:00',
@@ -558,7 +558,7 @@ public function syncMembersInChunks($groupId, $members)
     foreach ($chunks as $chunk) {
         foreach ($chunk as $member) {
             try {
-                Groups::createGroupMember($groupId, $member);
+                Groups::createMember($groupId, $member);
                 $results[] = ['email' => $member['email'], 'status' => 'success'];
             } catch (\Exception $e) {
                 $results[] = [

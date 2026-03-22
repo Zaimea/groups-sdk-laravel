@@ -192,7 +192,7 @@ $member->members();        // List all members
 ### Create Member
 
 ```php
-$response = Groups::createGroupMember(123, [
+$response = Groups::createMember(123, [
     'email' => 'new.member@example.com',
     'role' => 'member',
     'rate' => '07:00:00',      // Daily working hours

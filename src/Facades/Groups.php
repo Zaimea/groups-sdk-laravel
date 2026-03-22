@@ -77,7 +77,7 @@ use Zaimea\SDK\Groups\SDKManager;
  * Member Start
  * @method static \Zaimea\SDK\Groups\Resources\Member member($int $groupId, int $memberId)
  * @method static \Zaimea\SDK\Groups\Resources\Member[] members(int $groupId, array $filters = [], int $page)
- * @method static \Zaimea\SDK\Groups\Resources\Response createGroupMember(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Response createMember(int $groupId, array $data)
  * @method static \Zaimea\SDK\Groups\Resources\Response updateMember(int $groupId, array $data)
  * @method static \Zaimea\SDK\Groups\Resources\Response updateMemberRole(int $groupId, array $data)
  * @method static \Zaimea\SDK\Groups\Resources\Response deleteMember(int $groupId, int $memberId)

@@ -14,7 +14,7 @@
 
 ## Introduction
 
-``Groups SDK Laravel`` is a SDK.
+``Groups SDK Laravel`` allows you to use the `Zaimea Groups` feature in your `Laravel` application.
 
 ## Official Documentation
 

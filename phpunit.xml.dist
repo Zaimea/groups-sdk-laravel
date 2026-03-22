@@ -1,16 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         backupGlobals="false"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         processIsolation="false"
-         stopOnFailure="false"
          xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.4/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
          cacheDirectory=".phpunit.cache"
-         backupStaticProperties="false">
+         colors="true"
+         executionOrder="depends,defects"
+         requireCoverageMetadata="false"
+         beStrictAboutCoverageMetadata="false"
+         beStrictAboutOutputDuringTests="true"
+         failOnRisky="true"
+         failOnWarning="true">
     <testsuites>
-        <testsuite name="Test Suite">
-            <directory suffix="Test.php">./tests/</directory>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
+    
+    <source>
+        <include>
+            <directory>./src</directory>
+        </include>
+    </source>
+    
+    <coverage>
+        <report>
+            <html outputDirectory="./coverage"/>
+            <text outputFile="php://stdout"/>
+        </report>
+    </coverage>
+    
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_CONNECTION" value="sqlite"/>
+        <env name="DB_DATABASE" value=":memory:"/>
+    </php>
 </phpunit>
