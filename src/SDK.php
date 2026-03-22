@@ -116,7 +116,7 @@ class SDK
                 'Authorization' => 'Bearer '.$this->apiKey,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'User-Agent' => 'Zaimea Groups PHP/3.0',
+                'User-Agent' => 'Zaimea Groups PHP/1.0',
             ],
         ]);
 

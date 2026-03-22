@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Zaimea\SDK\Groups\Actions;
 
 use Zaimea\SDK\Groups\Resources\Count;
