@@ -26,7 +26,7 @@ trait ManagesGroupMembers
      * Get paginated group members.
      *
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'user id ']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Member[]
      */
@@ -66,7 +66,7 @@ trait ManagesGroupMembers
      *                      ]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupMember(int $groupId, array $data)
+    public function createMember(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -94,7 +94,7 @@ trait ManagesGroupMembers
      *                      ]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupMember(int $groupId, array $data)
+    public function updateMember(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -111,7 +111,7 @@ trait ManagesGroupMembers
      * @param  array  $data ['memberId' => 1, 'role' => 'member']
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupMemberRole(int $groupId, array $data)
+    public function updateMemberRole(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -128,7 +128,7 @@ trait ManagesGroupMembers
      * @param  int  $memberId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupMember(int $groupId, int $memberId)
+    public function deleteMember(int $groupId, int $memberId)
     {
         return new Response($this->delete("members/delete", [
             'group' => $groupId, 
@@ -140,11 +140,11 @@ trait ManagesGroupMembers
      * Get paginated group member roles.
      *
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'key / name / permissions / description / created_at']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Role[]
      */
-    public function roles($groupId, array $filters = [], int $page = 1)
+    public function memberRoles($groupId, array $filters = [], int $page = 1)
     {
         $params = array_merge(
             ['group' => $groupId, 'page' => $page],

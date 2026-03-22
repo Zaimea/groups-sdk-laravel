@@ -10,7 +10,6 @@ trait ManagesClients
     /**
      * Get paginated group client records.
      * 
-     * @param  int  $groupId
      * @param  array  $filters [
      *                           'search' => 'user id, scheduled or title', 'users' => ['',''],
      *                           'groups' => ['',''], 'start' => '', 'end' => ''

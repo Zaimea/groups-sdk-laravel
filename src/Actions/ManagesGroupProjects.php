@@ -25,7 +25,7 @@ trait ManagesGroupProjects
      * Get paginated group projects.
      * 
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'title']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Project[]
      */
@@ -94,7 +94,7 @@ trait ManagesGroupProjects
      *                      ]]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupProject(int $groupId, array $data)
+    public function createProject(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -293,7 +293,7 @@ trait ManagesGroupProjects
      * @param  int  $projectId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupProject(int $groupId, int $projectId)
+    public function deleteProject(int $groupId, int $projectId)
     {
         return new Response($this->delete("projects/delete", [
             'group' => $groupId, 

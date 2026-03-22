@@ -15,7 +15,7 @@ trait ManagesGroupRoles
      * @param  int  $roleId
      * @return \Zaimea\SDK\Groups\Resources\Role
      */
-    public function groupRole(int $groupId, int $roleId): Role
+    public function role(int $groupId, int $roleId): Role
     {
         return new Role(
             $this->get("roles/read", ['group' => $groupId, 'roleId' =>  $roleId])['data']
@@ -31,7 +31,7 @@ trait ManagesGroupRoles
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Role[]
      */
-    public function groupRoles($groupId, array $filters = [], int $page = 1)
+    public function roles($groupId, array $filters = [], int $page = 1)
     {
         $params = array_merge(
             ['group' => $groupId, 'page' => $page],
@@ -52,7 +52,7 @@ trait ManagesGroupRoles
      * @param  int  $roleId
      * @return array
      */
-    public function groupRolePermissions(int $groupId, int $roleId): array
+    public function rolePermissions(int $groupId, int $roleId): array
     {
         return $this->get("roles/read/permissions", ['group' => $groupId, 'roleId' =>  $roleId]);
     }
@@ -64,7 +64,7 @@ trait ManagesGroupRoles
      * @param  array  $data ['client' => bool, 'name' => string, 'description' => string, 'status' => bool, 'permissions' => array]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupRole(int $groupId, array $data)
+    public function createRole(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -81,7 +81,7 @@ trait ManagesGroupRoles
      * @param  array  $data ['roleId' => int, 'client' => bool, 'name' => string, 'description' => string, 'status' => bool]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupRole(int $groupId, array $data)
+    public function updateRole(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -120,7 +120,7 @@ trait ManagesGroupRoles
      * @param  array  $data ['roleId' => int, 'permissions' => array]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupRolePermissions(int $groupId, array $data)
+    public function updateRolePermissions(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -137,7 +137,7 @@ trait ManagesGroupRoles
      * @param  int  $roleId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupRole(int $groupId, int $roleId)
+    public function deleteRole(int $groupId, int $roleId)
     {
         return new Response($this->delete("roles/delete", [
             'group' => $groupId, 

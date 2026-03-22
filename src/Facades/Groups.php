@@ -9,6 +9,29 @@ use Illuminate\Support\Facades\Facade;
 use Zaimea\SDK\Groups\SDKManager;
 
 /**
+ * Client Start
+ * @method static \Zaimea\SDK\Groups\Resources\Record[] clientRecords(array $filters = [], int $page = 1)
+ * @method static \Zaimea\SDK\Groups\Resources\Group[] clientGroups()
+ * Client End
+ * 
+ * Group Client Start
+ * @method static \Zaimea\SDK\Groups\Resources\Client client(int $groupId, int $clientId)
+ * @method static \Zaimea\SDK\Groups\Resources\Client[] clients(int $groupId, array $filters = [], int $page = 1)
+ * @method static \Zaimea\SDK\Groups\Resources\ClientMember[] clientMembers(int $groupId, array $filters = [], int $page = 1)
+ * @method static \Zaimea\SDK\Groups\Resources\Response createClientMember(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Response createClient(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Response updateClient(int $groupId, int $clientId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Response updateClientMember(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Response updateClientProjects(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Response updateClientRole(int $groupId, array $data)
+ * @method static \Zaimea\SDK\Groups\Resources\Response leaveClientMember(int $groupId, int $memberId)
+ * @method static \Zaimea\SDK\Groups\Resources\Response removeClientMember(int $groupId, int $memberId)
+ * @method static \Zaimea\SDK\Groups\Resources\ClientMember clientMember(int $groupId, int $userId)
+ * @method static \Zaimea\SDK\Groups\Resources\Response deleteClient(int $groupId, int $clientId)
+ * @method static \Zaimea\SDK\Groups\Resources\Project[] clientProjects(int $groupId, int $clientId)
+ * @method static \Zaimea\SDK\Groups\Resources\Role[] clientRoles(int $groupId)
+ * Group Client End
+ * 
  * Group Start
  * @method static array groups()
  * @method static void deleteGroup(int $groupId)
@@ -38,15 +61,6 @@ use Zaimea\SDK\Groups\SDKManager;
  * @method static \Zaimea\SDK\Groups\Resources\Member members(int $groupId, array $filters = [], int $page)
  * @method static \Zaimea\SDK\Groups\Resources\Member createGroupMember(int $groupId, array $data)
  * Member End
- * 
- * Client Start
- * @method static \Zaimea\SDK\Groups\Resources\Group clientGroups()
- * @method static \Zaimea\SDK\Groups\Resources\Record clientRecords(int $groupId, array $filters = [], int $page)
- * Client End
- * 
- * Clients Start
- * 
- * Clients End
  * 
  * @method static \Zaimea\SDK\Groups\Resources\User user()
  * @method static mixed get(string $uri)

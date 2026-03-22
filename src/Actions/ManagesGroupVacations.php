@@ -14,7 +14,7 @@ trait ManagesGroupVacations
      * @param  array  $data ['title' => '', 'notes' => '', 'dates' => '2026-03-21, 2026-03-22']
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createVacationRecord(int $groupId, array $data)
+    public function createVacation(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -41,7 +41,7 @@ trait ManagesGroupVacations
     /**
      * Get paginated group vacation records.
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'user id, date, title']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Record[]
      */
@@ -67,7 +67,7 @@ trait ManagesGroupVacations
      * @param  string  $actionType  'approve' / 'disapprove'
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupVacationRecord(int $groupId, int $vacationId, string $actionType)
+    public function updateVacation(int $groupId, int $vacationId, string $actionType)
     {
         return new Response($this->put("vacations/update", [
             'group' => $groupId, 
@@ -83,9 +83,9 @@ trait ManagesGroupVacations
      * @param  int  $vacationId
      * @return mixed
      */
-    public function approveGroupVacationRecord(int $groupId, int $vacationId)
+    public function approveVacation(int $groupId, int $vacationId)
     {
-        return $this->updateGroupVacationRecord($groupId, $vacationId, 'approve');
+        return $this->updateVacation($groupId, $vacationId, 'approve');
     }
 
     /**
@@ -95,9 +95,9 @@ trait ManagesGroupVacations
      * @param  int  $vacationId
      * @return mixed
      */
-    public function disapproveGroupVacationRecord(int $groupId, int $vacationId)
+    public function disapproveVacation(int $groupId, int $vacationId)
     {
-        return $this->updateGroupVacationRecord($groupId, $vacationId, 'disapprove');
+        return $this->updateVacation($groupId, $vacationId, 'disapprove');
     }
 
     /**
@@ -107,7 +107,7 @@ trait ManagesGroupVacations
      * @param  int  $vacationId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupVacationRecord(int $groupId, int $vacationId)
+    public function deleteVacation(int $groupId, int $vacationId)
     {
         return new Response($this->delete("vacations/delete", [
             'group' => $groupId, 

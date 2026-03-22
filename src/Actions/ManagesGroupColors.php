@@ -38,13 +38,7 @@ trait ManagesGroupColors
      * Create a new group color.
      *
      * @param  int  $groupId
-     * @param  array $data [
-     *                      'name' => '', 
-     *                      'color_licht' => 'red',
-     *                      'color_licht_value' => 200,
-     *                      'color_dark' => 'red',
-     *                      'color_dark_value' => 400,
-     *                     ]
+     * @param  array $data ['name' => '', 'color_licht' => 'red', 'color_licht_value' => 200, 'color_dark' => 'red', 'color_dark_value' => 400]
      * @return \Zaimea\SDK\Groups\Resources\Color
      */
     public function createColor(int $groupId, array $data)
@@ -63,14 +57,7 @@ trait ManagesGroupColors
      * Update a group color.
      * 
      * @param  int   $groupId
-     * @param  array $data [
-     *                      'colorId' => '', 
-     *                      'name'=> '', 
-     *                      'color_licht' => 'red',
-     *                      'color_licht_value' => 200,
-     *                      'color_dark' => 'red',
-     *                      'color_dark_value' => 400,
-     *                      ]
+     * @param  array $data ['colorId' => '', 'name'=> '', 'color_licht' => 'red', 'color_licht_value' => 200, 'color_dark' => 'red', 'color_dark_value' => 400]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
     public function updateColor(int $groupId, array $data)

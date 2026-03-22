@@ -13,7 +13,7 @@ trait ManagesInvitations
      * @param  int  $invitationId
      * @return \Zaimea\SDK\Groups\Resources\Invitation
      */
-    public function acceptGroupInvitation(int $invitationId): Invitation
+    public function acceptMemberInvitation(int $invitationId): Invitation
     {
         return new Invitation(
             $this->get("group-invitations/accept", ['invitationId' => $invitationId])['data'], $this
@@ -26,7 +26,33 @@ trait ManagesInvitations
      * @param  int  $invitationId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupInvitation(int $invitationId)
+    public function deleteMemberInvitation(int $invitationId)
+    {
+        return new Response($this->delete("group-invitations/delete", [
+            'invitationId' => $invitationId,
+        ]), $this);
+    }
+
+    /**
+     * Accept a group client member invitation.
+     *
+     * @param  int  $invitationId
+     * @return \Zaimea\SDK\Groups\Resources\Invitation
+     */
+    public function acceptClientInvitation(int $invitationId): Invitation
+    {
+        return new Invitation(
+            $this->get("clients/accept/invitation", ['invitationId' => $invitationId])['data'], $this
+        );
+    }
+    
+    /**
+     * Delete the given group client member invitation.
+     *
+     * @param  int  $invitationId
+     * @return \Zaimea\SDK\Groups\Resources\Response
+     */
+    public function deleteClientInvitation(int $invitationId)
     {
         return new Response($this->delete("group-invitations/delete", [
             'invitationId' => $invitationId,

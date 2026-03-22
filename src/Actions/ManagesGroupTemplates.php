@@ -57,7 +57,7 @@ trait ManagesGroupTemplates
      *                      ]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupProjectTemplate(int $groupId, array $data)
+    public function createProjectTemplate(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -135,7 +135,7 @@ trait ManagesGroupTemplates
      * @param  int  $templateId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupTemplate(int $groupId, int $templateId)
+    public function deleteTemplate(int $groupId, int $templateId)
     {
         return new Response($this->delete("templates/delete", [
             'group' => $groupId, 

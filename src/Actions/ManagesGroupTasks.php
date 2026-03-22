@@ -56,7 +56,7 @@ trait ManagesGroupTasks
      *                      ]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupProjectTask(int $groupId, array $data)
+    public function createProjectTask(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -133,7 +133,7 @@ trait ManagesGroupTasks
      * @param  int  $taskId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupTask(int $groupId, int $taskId)
+    public function deleteTask(int $groupId, int $taskId)
     {
         return new Response($this->delete("tasks/delete", [
             'group' => $groupId, 

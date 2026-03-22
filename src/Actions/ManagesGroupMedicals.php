@@ -14,7 +14,7 @@ trait ManagesGroupMedicals
      * @param  array  $data ['title' => '', 'notes' => '', 'dates' => '2026-03-21, 2026-03-22']
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createMedicalRecord(int $groupId, array $data)
+    public function createMedical(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -41,7 +41,7 @@ trait ManagesGroupMedicals
     /**
      * Get paginated group medical records.
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'user id / date / title']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Record[]
      */
@@ -67,7 +67,7 @@ trait ManagesGroupMedicals
      * @param  string  $actionType  'approve' / 'disapprove'
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupMedicalRecord(int $groupId, int $medicalId, string $actionType)
+    public function updateMedical(int $groupId, int $medicalId, string $actionType)
     {
         return new Response($this->put("medicals/update", [
             'group' => $groupId, 
@@ -83,9 +83,9 @@ trait ManagesGroupMedicals
      * @param  int  $medicalId
      * @return mixed
      */
-    public function approveGroupMedicalRecord(int $groupId, int $medicalId)
+    public function approveMedical(int $groupId, int $medicalId)
     {
-        return $this->updateGroupMedicalRecord($groupId, $medicalId, 'approve');
+        return $this->updateMedical($groupId, $medicalId, 'approve');
     }
 
     /**
@@ -95,9 +95,9 @@ trait ManagesGroupMedicals
      * @param  int  $medicalId
      * @return mixed
      */
-    public function disapproveGroupMedicalRecord(int $groupId, int $medicalId)
+    public function disapproveMedical(int $groupId, int $medicalId)
     {
-        return $this->updateGroupMedicalRecord($groupId, $medicalId, 'disapprove');
+        return $this->updateMedical($groupId, $medicalId, 'disapprove');
     }
 
     /**
@@ -107,7 +107,7 @@ trait ManagesGroupMedicals
      * @param  int  $medicalId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupMedicalRecord(int $groupId, int $medicalId)
+    public function deleteMedical(int $groupId, int $medicalId)
     {
         return new Response($this->delete("medicals/delete", [
             'group' => $groupId, 

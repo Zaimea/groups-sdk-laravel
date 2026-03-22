@@ -14,7 +14,7 @@ trait ManagesGroupLockings
      * @param  array  $data ['param' => '0 * * * *']
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupLocking(int $groupId, array $data)
+    public function createLocking(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -31,7 +31,7 @@ trait ManagesGroupLockings
      * @param  array  $data ['lockingId' => 1, 'param' => '0 * * * *']
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupLocking(int $groupId, array $data)
+    public function updateLocking(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -58,15 +58,13 @@ trait ManagesGroupLockings
     /**
      * Get paginated group lockings.
      * @param  int  $groupId
-     * @param  array  $filters
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Locking[]
      */
-    public function lockings($groupId, array $filters = [], int $page = 1)
+    public function lockings($groupId, int $page = 1)
     {
         $params = array_merge(
-            ['group' => $groupId, 'page' => $page],
-            $filters
+            ['group' => $groupId, 'page' => $page]
         );
 
         return $this->transformCollection(
@@ -83,7 +81,7 @@ trait ManagesGroupLockings
      * @param  int  $lockingId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupLocking(int $groupId, int $lockingId)
+    public function deleteLocking(int $groupId, int $lockingId)
     {
         return new Response($this->delete("lockings/delete", [
             'group' => $groupId, 

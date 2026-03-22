@@ -23,8 +23,9 @@ trait ManagesGroupRecords
 
     /**
      * Get paginated group records.
+     * 
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'user id / scheduled or title', 'users' => ['1'], 'start' => 'YYYY-MM-DD', 'end' => 'YYYY-MM-DD']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Member[]
      */
@@ -44,9 +45,15 @@ trait ManagesGroupRecords
 
     /**
      * Get records aggregate for a group.
-     *
+     * 
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters [
+     *                              'users' => ['1'], 
+     *                              'start' => 'YYYY-MM-DD', 'end' => 'YYYY-MM-DD', 
+     *                              'interval' => 'thisDay / thisWeek / thisMonth / previousMonth / thisYear', 
+     *                              'for' => 'projects / tasks / clients / none', 
+     *                              'decimal' => boolean
+     *                          ]
      * @return \Zaimea\SDK\Groups\Resources\Record[]
      */
     public function recordsAggregate(int $groupId, array $filters = [])
@@ -92,7 +99,7 @@ trait ManagesGroupRecords
      * @param  string  $actionType  'approve' / 'disapprove'
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupRecord(int $groupId, int $recordId, string $actionType)
+    public function updateRecord(int $groupId, int $recordId, string $actionType)
     {
         return new Response($this->put("records/update", [
             'group' => $groupId, 
@@ -108,9 +115,9 @@ trait ManagesGroupRecords
      * @param  int  $recordId
      * @return mixed
      */
-    public function approveGroupRecord(int $groupId, int $recordId)
+    public function approveRecord(int $groupId, int $recordId)
     {
-        return $this->updateGroupRecord($groupId, $recordId, 'approve');
+        return $this->updateRecord($groupId, $recordId, 'approve');
     }
 
     /**
@@ -120,9 +127,9 @@ trait ManagesGroupRecords
      * @param  int  $recordId
      * @return mixed
      */
-    public function disapproveGroupRecord(int $groupId, int $recordId)
+    public function disapproveRecord(int $groupId, int $recordId)
     {
-        return $this->updateGroupRecord($groupId, $recordId, 'disapprove');
+        return $this->updateRecord($groupId, $recordId, 'disapprove');
     }
 
     /**
@@ -132,7 +139,7 @@ trait ManagesGroupRecords
      * @param  int  $recordId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupRecord(int $groupId, int $recordId)
+    public function deleteRecord(int $groupId, int $recordId)
     {
         return new Response($this->delete("records/delete", [
             'group' => $groupId, 

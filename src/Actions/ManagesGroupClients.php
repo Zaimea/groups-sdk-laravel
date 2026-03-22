@@ -32,7 +32,7 @@ trait ManagesGroupClients
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Client[]
      */
-    public function clients($groupId, array $filters = [], int $page = 1)
+    public function clients(int $groupId, array $filters = [], int $page = 1)
     {
         $params = array_merge(
             ['group' => $groupId, 'page' => $page],
@@ -54,7 +54,7 @@ trait ManagesGroupClients
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\ClientMember[]
      */
-    public function clientMembers($groupId, array $filters = [], int $page = 1)
+    public function clientMembers(int $groupId, array $filters = [], int $page = 1)
     {
         $params = array_merge(
             ['group' => $groupId, 'page' => $page],
@@ -74,7 +74,7 @@ trait ManagesGroupClients
      * @param  array  $data ['email' => '', 'role' => '', 'clientId' => int, 'status' => int]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupClientMember(int $groupId, array $data)
+    public function createClientMember(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -91,7 +91,7 @@ trait ManagesGroupClients
      * @param  array  $data ['client_name' => '', 'client_adress' => '', 'projectBinds' => [1,2,3], 'status' => 1]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupClient(int $groupId, array $data)
+    public function createClient(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -109,7 +109,7 @@ trait ManagesGroupClients
      * @param  array  $data ['client_name' => '', 'client_adress' => '', 'projects' => '1,2', 'status' => 1]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupClient(int $groupId, int $clientId, array $data)
+    public function updateClient(int $groupId, int $clientId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId, 'clientId' => $clientId],
@@ -126,7 +126,7 @@ trait ManagesGroupClients
      * @param  array  $data ['memberId' => '', 'clientId' => '', 'status' => 1]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupClientMember(int $groupId, array $data)
+    public function updateClientMember(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -143,7 +143,7 @@ trait ManagesGroupClients
      * @param  array  $data ['clientId' => '', 'projects' => [1,2,3]]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupClientProjects(int $groupId, array $data)
+    public function updateClientProjects(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -154,13 +154,13 @@ trait ManagesGroupClients
     }
     
     /**
-     * Update group client role. #TODO, de fixat
+     * Update group client role.
      * 
      * @param  int  $groupId
      * @param  array  $data ['memberId' => '', 'role' => 'client']
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function updateGroupClientRole(int $groupId, array $data)
+    public function updateClientRole(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -177,7 +177,7 @@ trait ManagesGroupClients
      * @param  int  $memberId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function leaveGroupClientMember(int $groupId, int $memberId)
+    public function leaveClientMember(int $groupId, int $memberId)
     {
         return new Response($this->put("clients/leave/member", [
             'group' => $groupId, 
@@ -192,7 +192,7 @@ trait ManagesGroupClients
      * @param  int  $memberId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function removeGroupClientMember(int $groupId, int $memberId)
+    public function removeClientMember(int $groupId, int $memberId)
     {
         return new Response($this->put("clients/remove/member", [
             'group' => $groupId, 
@@ -215,28 +215,13 @@ trait ManagesGroupClients
     }
 
     /**
-     * Delete the given group client member invitation.
-     *
-     * @param  int  $groupId
-     * @param  int  $invitationId
-     * @return \Zaimea\SDK\Groups\Resources\Response
-     */
-    public function deleteGroupClientInvitation(int $groupId, int $invitationId)
-    {
-        return new Response($this->delete("clients/delete/invitation", [
-            'group' => $groupId, 
-            'invitationId' => $invitationId,
-        ]), $this);
-    }
-
-    /**
      * Remove the given group client.
      *
      * @param  int  $groupId
      * @param  int  $clientId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupClient(int $groupId, int $clientId)
+    public function deleteClient(int $groupId, int $clientId)
     {
         return new Response($this->delete("clients/destroy", [
             'group' => $groupId, 

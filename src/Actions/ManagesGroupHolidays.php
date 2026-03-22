@@ -15,7 +15,7 @@ trait ManagesGroupHolidays
      * @param  array  $data ['title' => '', 'description' => 'red', 'users' => ['1'], 'dates' => '2026-03-20, 2026-03-21']
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function createGroupHoliday(int $groupId, array $data)
+    public function createHoliday(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],
@@ -42,7 +42,7 @@ trait ManagesGroupHolidays
     /**
      * Get paginated group holidays.
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'user id']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Holiday[]
      */
@@ -92,7 +92,7 @@ trait ManagesGroupHolidays
     /**
      * Get paginated group member holidays records.
      * @param  int  $groupId
-     * @param  array  $filters
+     * @param  array  $filters ['search' => 'user id']
      * @param  int  $page
      * @return \Zaimea\SDK\Groups\Resources\Record[]
      */
@@ -117,7 +117,7 @@ trait ManagesGroupHolidays
      * @param  int  $recordId
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function deleteGroupHolidayMemberRecord(int $groupId, int $recordId)
+    public function deleteHolidayMember(int $groupId, int $recordId)
     {
         return new Response($this->delete("holidays/delete/member", [
             'group' => $groupId, 
