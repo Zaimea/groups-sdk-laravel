@@ -109,7 +109,7 @@ class SDK
         $this->apiKey = $apiKey;
 
         $this->guzzle = $guzzle ?: new HttpClient([
-            'base_uri' => 'https://resources.click/api/v1/groups/',
+            'base_uri' => config('groups_sdk.api_url', 'https://resources.click/api/v1/groups/'),
             'http_errors' => false,
             'timeout' => $this->timeout,
             'headers' => [

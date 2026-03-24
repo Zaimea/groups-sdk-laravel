@@ -21,11 +21,11 @@ abstract class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('groups.credentials.key', 'test_client_id');
-        $app['config']->set('groups.credentials.secret', 'test_client_secret');
-        $app['config']->set('groups.api_url', 'https://resources.click/api/v1/groups/');
-        $app['config']->set('groups.auth.token_source', 'session');
-        $app['config']->set('groups.security.force_https', false);
+        $app['config']->set('groups_sdk.credentials.key', 'test_client_id');
+        $app['config']->set('groups_sdk.credentials.secret', 'test_client_secret');
+        $app['config']->set('groups_sdk.api_url', 'https://resources.click/api/v1/groups/');
+        $app['config']->set('groups_sdk.auth.token_source', 'session');
+        $app['config']->set('groups_sdk.security.force_https', false);
     }
 
     protected function mockHttpClient(array $responses): HttpClient

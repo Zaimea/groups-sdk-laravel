@@ -40,10 +40,10 @@ class ServiceProviderTest extends TestCase
 
     public function test_config_is_merged()
     {
-        $this->assertNotNull(config('groups'));
-        $this->assertArrayHasKey('credentials', config('groups'));
-        $this->assertArrayHasKey('api_url', config('groups'));
-        $this->assertArrayHasKey('auth', config('groups'));
+        $this->assertNotNull(config('groups_sdk'));
+        $this->assertArrayHasKey('credentials', config('groups_sdk'));
+        $this->assertArrayHasKey('api_url', config('groups_sdk'));
+        $this->assertArrayHasKey('auth', config('groups_sdk'));
     }
 
     public function test_token_source_session()
@@ -55,8 +55,8 @@ class ServiceProviderTest extends TestCase
 
     public function test_token_source_cache()
     {
-        config()->set('groups.auth.token_source', 'cache');
-        config()->set('groups.auth.cache.key_prefix', 'test_token_');
+        config()->set('groups_sdk.auth.token_source', 'cache');
+        config()->set('groups_sdk.auth.cache.key_prefix', 'test_token_');
         
         Cache::put('test_token_1', 'cached_token', 3600);
         
@@ -80,7 +80,7 @@ class ServiceProviderTest extends TestCase
         $this->expectExceptionMessage('SECURITY_FORCE_HTTPS must be enabled');
         
         config()->set('app.debug', false);
-        config()->set('groups.security.force_https', false);
+        config()->set('groups_sdk.security.force_https', false);
         config()->set('app.url', 'https://example.com');
         
         ProductionSecurityChecks::assertForEnvironment('production');
@@ -92,7 +92,7 @@ class ServiceProviderTest extends TestCase
         $this->expectExceptionMessage('APP_DEBUG must be false');
         
         config()->set('app.debug', true);
-        config()->set('groups.security.force_https', true);
+        config()->set('groups_sdk.security.force_https', true);
         config()->set('app.url', 'https://example.com');
         
         ProductionSecurityChecks::assertForEnvironment('production');
@@ -104,7 +104,7 @@ class ServiceProviderTest extends TestCase
         $this->expectExceptionMessage('APP_URL must use https://');
         
         config()->set('app.debug', false);
-        config()->set('groups.security.force_https', true);
+        config()->set('groups_sdk.security.force_https', true);
         config()->set('app.url', 'http://example.com');
         
         ProductionSecurityChecks::assertForEnvironment('production');
@@ -113,7 +113,7 @@ class ServiceProviderTest extends TestCase
     public function test_production_security_checks_pass_when_configured_correctly()
     {
         config()->set('app.debug', false);
-        config()->set('groups.security.force_https', true);
+        config()->set('groups_sdk.security.force_https', true);
         config()->set('app.url', 'https://example.com');
         
         $this->assertNull(

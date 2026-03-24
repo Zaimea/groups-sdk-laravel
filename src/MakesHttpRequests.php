@@ -12,6 +12,7 @@ use Zaimea\SDK\Groups\Exceptions\NotFoundException;
 use Zaimea\SDK\Groups\Exceptions\RateLimitExceededException;
 use Zaimea\SDK\Groups\Exceptions\TimeoutException;
 use Zaimea\SDK\Groups\Exceptions\ValidationException;
+use Zaimea\SDK\Groups\Support\SecurityAudit;
 
 trait MakesHttpRequests
 {
@@ -84,6 +85,14 @@ trait MakesHttpRequests
         $statusCode = $response->getStatusCode();
 
         if ($statusCode < 200 || $statusCode > 299) {
+            if (config('groups_sdk.logging', true)) {
+                if ($statusCode === 401 || $statusCode === 403) {
+                    SecurityAudit::log('api.error', [
+                        'status' => $statusCode,
+                        'uri' => $uri,
+                    ]);
+                }
+            }
             return $this->handleRequestError($response);
         }
 

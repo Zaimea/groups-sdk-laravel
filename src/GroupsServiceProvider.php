@@ -26,8 +26,8 @@ class GroupsServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->publishes(
-                [__DIR__.'/../config/groups.php' => config_path('groups.php')],
-                'groups'
+                [__DIR__.'/../config/groups_sdk.php' => config_path('groups_sdk.php')],
+                'groups-sdk'
             );
         };
     }
@@ -40,8 +40,8 @@ class GroupsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(
-            __DIR__.'/../config/groups.php',
-            'groups'
+            __DIR__.'/../config/groups_sdk.php',
+            'groups-sdk'
         );
 
         $this->app->singleton(SDKManager::class, function ($app) {
@@ -56,8 +56,8 @@ class GroupsServiceProvider extends ServiceProvider
     }
     protected function getToken(): ?string
     {
-        $source = config('groups.auth.token_source', 'session');
-        $key = config('groups.auth.session_key', 'groups_token');
+        $source = config('groups_sdk.auth.token_source', 'session');
+        $key = config('groups_sdk.auth.session_key', 'groups_token');
 
         return match ($source) {
             'session' => session($key),
@@ -68,7 +68,7 @@ class GroupsServiceProvider extends ServiceProvider
     
     protected function getTokenFromCache(): ?string
     {
-        $config = config('groups.auth.cache');
+        $config = config('groups_sdk.auth.cache');
         $userId = auth()->id();
         
         if (!$userId) {

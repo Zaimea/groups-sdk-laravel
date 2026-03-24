@@ -18,7 +18,7 @@ final class ProductionSecurityChecks
             throw new RuntimeException('In production, APP_DEBUG must be false.');
         }
 
-        if (! (bool) config('groups.security.force_https', false)) {
+        if (! (bool) config('groups_sdk.security.force_https', false)) {
             throw new RuntimeException('In production, SECURITY_FORCE_HTTPS must be enabled.');
         }
 

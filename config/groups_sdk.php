@@ -56,11 +56,8 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Features
+    | Logging
     |--------------------------------------------------------------------------
     */
-    'features' => [
-        'auto_retry' => env('ZAIMEA_AUTO_RETRY', true),
-        'logging' => env('ZAIMEA_LOGGING', false),
-    ],
+    'logging' => env('ZAIMEA_LOGGING', false)
 ];

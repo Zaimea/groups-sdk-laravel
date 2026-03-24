@@ -75,10 +75,10 @@ ZAIMEA_LOGGING=false
 Publish the config file to customize settings:
 
 ```bash
-php artisan vendor:publish --tag=groups
+php artisan vendor:publish --tag=groups-sdk
 ```
 
-This creates `config/groups.php` with the following structure:
+This creates `config/groups_sdk.php` with the following structure:
 
 ```php
 return [
