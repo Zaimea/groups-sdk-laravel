@@ -67,7 +67,7 @@ trait ManagesGroupColors
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
 
         return new Response(

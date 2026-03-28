@@ -27,7 +27,7 @@ class GroupsServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes(
                 [__DIR__.'/../config/groups_sdk.php' => config_path('groups_sdk.php')],
-                'groups-sdk'
+                'groups_sdk'
             );
         };
     }
@@ -41,7 +41,7 @@ class GroupsServiceProvider extends ServiceProvider
     {
         $this->mergeConfigFrom(
             __DIR__.'/../config/groups_sdk.php',
-            'groups-sdk'
+            'groups_sdk'
         );
 
         $this->app->singleton(SDKManager::class, function ($app) {
@@ -76,6 +76,6 @@ class GroupsServiceProvider extends ServiceProvider
         }
 
         return cache()->store($config['store'] ?? 'default')
-                      ->get(($config['key_prefix'] ?? 'groups_token_') . $userId);
+                      ->get(($config['key_prefix'] ?? 'zaimea_token_') . $userId);
     }
 }

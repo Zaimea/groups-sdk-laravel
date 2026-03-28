@@ -90,7 +90,7 @@ trait ManagesGroupClients
      * Create a new client group.
      * 
      * @param  int  $groupId
-     * @param  array  $data ['client_name' => '', 'client_adress' => '', 'projectBinds' => [1,2,3], 'status' => 1]
+     * @param  array  $data ['client_name' => '', 'client_address' => '', 'projectBinds' => [1,2,3], 'status' => 1]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
     public function createClient(int $groupId, array $data)
@@ -108,14 +108,14 @@ trait ManagesGroupClients
      * 
      * @param  int  $groupId
      * @param  int  $clientId
-     * @param  array  $data ['client_name' => '', 'client_adress' => '', 'projects' => '1,2', 'status' => 1]
+     * @param  array  $data ['client_name' => '', 'client_address' => '', 'projects' => '1,2', 'status' => 1]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
     public function updateClient(int $groupId, int $clientId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId, 'clientId' => $clientId],
-            $data,
+            $data
         );
 
         return new Response($this->put("clients/update", $params), $this);
@@ -132,7 +132,7 @@ trait ManagesGroupClients
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
 
         return new Response($this->put("clients/update/member", $params), $this);
@@ -149,7 +149,7 @@ trait ManagesGroupClients
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
 
         return new Response($this->put("clients/update/projects", $params), $this);
@@ -166,7 +166,7 @@ trait ManagesGroupClients
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
 
         return new Response($this->put("clients/update/role", $params), $this);

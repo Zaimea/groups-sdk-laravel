@@ -41,7 +41,6 @@ class ServiceProviderTest extends TestCase
     public function test_config_is_merged()
     {
         $this->assertNotNull(config('groups_sdk'));
-        $this->assertArrayHasKey('credentials', config('groups_sdk'));
         $this->assertArrayHasKey('api_url', config('groups_sdk'));
         $this->assertArrayHasKey('auth', config('groups_sdk'));
     }
@@ -50,7 +49,7 @@ class ServiceProviderTest extends TestCase
     {
         $this->authenticate('session_token_123');
         
-        $this->assertEquals('session_token_123', session('access_token'));
+        $this->assertEquals('session_token_123', session('zaimea_access_token'));
     }
 
     public function test_token_source_cache()

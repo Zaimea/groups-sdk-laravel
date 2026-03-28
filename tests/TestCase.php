@@ -2,13 +2,12 @@
 
 namespace Zaimea\SDK\Groups\Tests;
 
-use Orchestra\Testbench\TestCase as BaseTestCase;
-use Zaimea\SDK\Groups\GroupsServiceProvider;
-use Zaimea\SDK\Groups\SDKManager;
-use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
+use Illuminate\Support\Facades\Http as HttpClient;
+use Orchestra\Testbench\TestCase as BaseTestCase;
+use Zaimea\SDK\Groups\GroupsServiceProvider;
 
 abstract class TestCase extends BaseTestCase
 {
@@ -21,8 +20,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('groups_sdk.credentials.key', 'test_client_id');
-        $app['config']->set('groups_sdk.credentials.secret', 'test_client_secret');
         $app['config']->set('groups_sdk.api_url', 'https://resources.click/api/v1/groups/');
         $app['config']->set('groups_sdk.auth.token_source', 'session');
         $app['config']->set('groups_sdk.security.force_https', false);
@@ -60,6 +57,6 @@ abstract class TestCase extends BaseTestCase
 
     protected function authenticate(string $token = 'test_access_token'): void
     {
-        session(['access_token' => $token]);
+        session(['zaimea_access_token' => $token]);
     }
 }

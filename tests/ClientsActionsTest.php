@@ -22,7 +22,7 @@ class ClientsActionsTest extends TestCase
                 'data' => [
                     'id' => 456,
                     'client_name' => 'Acme Corporation',
-                    'client_adress' => '123 Business St',
+                    'client_address' => '123 Business St',
                     'status' => 1,
                 ]
             ])
@@ -62,7 +62,7 @@ class ClientsActionsTest extends TestCase
 
         $response = $sdk->createClient(123, [
             'client_name' => 'New Client',
-            'client_adress' => '456 New Street',
+            'client_address' => '456 New Street',
             'projectBinds' => [1, 2],
             'status' => 1,
         ]);

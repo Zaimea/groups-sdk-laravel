@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Zaimea\SDK\Groups;
 
-use GuzzleHttp\Client as HttpClient;
-use Zaimea\SDK\Groups\Resources\User;
 use Illuminate\Pagination\AbstractPaginator;
+use Illuminate\Support\Facades\Http as HttpClient;
+use Zaimea\SDK\Groups\GroupsServiceProvider;
+use Zaimea\SDK\Groups\Resources\User;
 
 class SDK
 {
@@ -40,7 +41,7 @@ class SDK
     /**
      * The Guzzle HTTP Client instance.
      *
-     * @var \GuzzleHttp\Client
+     * @var \Illuminate\Support\Facades\Http
      */
     public ?HttpClient $guzzle = null;
 
@@ -101,7 +102,7 @@ class SDK
     /**
      * Set the api key and setup the guzzle request object.
      *
-     * @param  \GuzzleHttp\Client|null  $guzzle
+     * @param  \Illuminate\Support\Facades\Http|null  $guzzle
      * @return $this
      */
     public function setApiKey(string $apiKey, ?HttpClient $guzzle = null): self
@@ -116,7 +117,7 @@ class SDK
                 'Authorization' => 'Bearer '.$this->apiKey,
                 'Accept' => 'application/json',
                 'Content-Type' => 'application/json',
-                'User-Agent' => 'Zaimea Groups PHP/1.0',
+                'User-Agent' => 'Zaimea Groups Laravel PHP/' . GroupsServiceProvider::VERSION,
             ],
         ]);
 

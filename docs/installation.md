@@ -58,15 +58,11 @@ Or add it manually to your `composer.json`:
 Add these variables to your `.env` file:
 
 ```env
-# Required - API Credentials
-ZAIMEA_CLIENT_ID=your_client_id
-ZAIMEA_CLIENT_SECRET=your_client_secret
 
 # Optional - API Configuration
 ZAIMEA_API_URL=https://resources.click/api/v1/groups/
 ZAIMEA_TOKEN_SOURCE=session
 ZAIMEA_FORCE_HTTPS=true
-ZAIMEA_AUTO_RETRY=true
 ZAIMEA_LOGGING=false
 ```
 
@@ -82,18 +78,13 @@ This creates `config/groups_sdk.php` with the following structure:
 
 ```php
 return [
-    'credentials' => [
-        'key'    => env('ZAIMEA_CLIENT_ID', ''),
-        'secret' => env('ZAIMEA_CLIENT_SECRET', ''),
-    ],
-
     'version' => '1.0',
 
     'api_url' => env('ZAIMEA_API_URL', 'https://resources.click/api/v1/groups/'),
 
     'auth' => [
         'token_source' => env('ZAIMEA_TOKEN_SOURCE', 'session'), // session, cache, custom
-        'session_key' => 'access_token',
+        'session_key' => 'zaimea_access_token',
         'cache' => [
             'key_prefix' => 'zaimea_token_',
         ],
@@ -103,10 +94,7 @@ return [
         'force_https' => env('ZAIMEA_FORCE_HTTPS', true),
     ],
 
-    'features' => [
-        'auto_retry' => env('ZAIMEA_AUTO_RETRY', true),
-        'logging' => env('ZAIMEA_LOGGING', false),
-    ],
+    'logging' => env('ZAIMEA_LOGGING', false),
 ];
 ```
 
@@ -118,7 +106,7 @@ The SDK supports three token sources:
 Token is stored in Laravel session:
 
 ```php
-// Token is automatically retrieved from session('access_token')
+// Token is automatically retrieved from session('zaimea_access_token')
 Groups::groups(); // Works seamlessly
 ```
 

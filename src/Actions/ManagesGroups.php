@@ -97,7 +97,7 @@ trait ManagesGroups
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
 
         return new Response(
@@ -117,7 +117,7 @@ trait ManagesGroups
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
 
         return new Response(
@@ -140,7 +140,7 @@ trait ManagesGroups
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
         
         return new Response(
@@ -160,7 +160,7 @@ trait ManagesGroups
     {
         $params = array_merge(
             ['group' => $groupId],
-            $data,
+            $data
         );
         
         return new Response(

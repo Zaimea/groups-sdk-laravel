@@ -186,11 +186,13 @@ class OtherActionsTest extends TestCase
 
     public function test_can_generate_report()
     {
-        /*
+        $pdfContent = '%PDF-1.4 test pdf content';
+        
         $sdk = $this->createSDKWithMock([
             new \GuzzleHttp\Psr7\Response(200, [
                 'Content-Type' => 'application/pdf',
-            ], 'PDF_CONTENT_HERE')
+                'Content-Disposition' => 'attachment; filename="report.pdf"'
+            ], $pdfContent)
         ]);
 
         $response = $sdk->reportGenerate(123, [
@@ -205,9 +207,14 @@ class OtherActionsTest extends TestCase
             ]
         ]);
 
+        // Verificam ca raspunsul este instanta de Response
         $this->assertInstanceOf(Response::class, $response);
-        */
-        $this->assertEquals('1', '1');//TODO fix the test
+        
+        // Verificam ca atributele contin datele PDF sub cheia 'content'
+        $this->assertArrayHasKey('content', $response->attributes);
+        $this->assertArrayHasKey('type', $response->attributes);
+        $this->assertEquals($pdfContent, $response->attributes['content']);
+        $this->assertEquals('pdf', $response->attributes['type']);
     }
 
     public function test_can_get_monthly_quotas()

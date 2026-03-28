@@ -56,7 +56,7 @@ trait ManagesInvitations
      */
     public function deleteClientInvitation(int $invitationId)
     {
-        return new Response($this->delete("group-invitations/delete", [
+        return new Response($this->delete("clients/delete/invitation", [
             'invitationId' => $invitationId,
         ]), $this);
     }

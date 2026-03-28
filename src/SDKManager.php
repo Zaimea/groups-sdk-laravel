@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Zaimea\SDK\Groups;
 
-use GuzzleHttp\Client as HttpClient;
+use Illuminate\Support\Facades\Http as HttpClient;
 use Illuminate\Support\Traits\ForwardsCalls;
 use Zaimea\SDK\Groups\SDK;
 

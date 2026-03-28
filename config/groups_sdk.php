@@ -5,16 +5,6 @@ use Zaimea\SDK\Groups\GroupsServiceProvider;
 return [
     /*
     |--------------------------------------------------------------------------
-    | Credentials
-    |--------------------------------------------------------------------------
-    */
-    'credentials' => [
-        'key'    => env('ZAIMEA_CLIENT_ID', ''),
-        'secret' => env('ZAIMEA_CLIENT_SECRET', ''),
-    ],
-    
-    /*
-    |--------------------------------------------------------------------------
     | Version
     |--------------------------------------------------------------------------
     */
@@ -37,7 +27,7 @@ return [
         'token_source' => env('ZAIMEA_TOKEN_SOURCE', 'session'),
         
         // Session key where token is stored (for 'session' source)
-        'session_key' => 'access_token',
+        'session_key' => 'zaimea_access_token',
         
         // Cache configuration (for 'cache' source)
         'cache' => [

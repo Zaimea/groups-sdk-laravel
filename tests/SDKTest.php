@@ -130,7 +130,7 @@ class SDKTest extends TestCase
         $this->expectException(\RuntimeException::class);
         $this->expectExceptionMessage('No authentication token available');
         
-        session()->forget('access_token');
+        session()->forget('zaimea_access_token');
         
         app(SDKManager::class);
     }

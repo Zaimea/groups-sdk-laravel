@@ -52,7 +52,23 @@ trait ManagesGroupReports
      *                      ]
      * @return \Zaimea\SDK\Groups\Resources\Response
      */
-    public function reportGenerate(int $groupId, array $data)
+    public function reportGenerate(int $groupId, array $data): Response
+    {
+        $params = array_merge(
+            ['group' => $groupId],
+            $data
+        );
+        
+        $response = $this->get("reports/generate", $params);
+        
+        // Daca raspunsul este un string (PDF content), il impachetam intr-un array
+        if (is_string($response)) {
+            $response = ['content' => $response, 'type' => 'pdf'];
+        }
+        
+        return new Response($response, $this);
+    }
+    public function reportGenerate2(int $groupId, array $data)
     {
         $params = array_merge(
             ['group' => $groupId],

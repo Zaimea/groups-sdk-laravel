@@ -276,7 +276,7 @@ $client->clients();      // List clients
 ```php
 $response = Groups::createClient(123, [
     'client_name' => 'Acme Corporation',
-    'client_adress' => '123 Business Street',
+    'client_address' => '123 Business Street',
     'projectBinds' => [1, 2, 3], // Associated project IDs
     'status' => 1
 ]);
@@ -287,7 +287,7 @@ $response = Groups::createClient(123, [
 ```php
 Groups::updateClient(123, 456, [
     'client_name' => 'Updated Name',
-    'client_adress' => 'New Address',
+    'client_address' => 'New Address',
     'projects' => '1,2,3',
     'status' => 1
 ]);

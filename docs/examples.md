@@ -462,7 +462,7 @@ public function onboardClient($groupId, $clientData)
     // 1. Create client
     $client = Groups::createClient($groupId, [
         'client_name' => $clientData['company_name'],
-        'client_adress' => $clientData['address'],
+        'client_address' => $clientData['address'],
         'projectBinds' => $clientData['project_ids'] ?? [],
         'status' => 1
     ]);
@@ -647,8 +647,6 @@ class GroupControllerTest extends TestCase
 
 ```php
 // In your phpunit.xml or .env.testing
-ZAIMEA_CLIENT_ID=test_client_id
-ZAIMEA_CLIENT_SECRET=test_client_secret
 ZAIMEA_API_URL=https://resources.click/api/v1/groups/
 ```
 
